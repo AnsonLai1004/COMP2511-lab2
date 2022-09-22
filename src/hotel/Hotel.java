@@ -38,6 +38,16 @@ public class Hotel {
 
     private boolean roomDesired(Room room, boolean standard, boolean ensuite, boolean penthouse) {
         if (room instanceof StandardRoom) {
+            return standard;
+        } else if (room instanceof EnsuiteRoom) {
+            return ensuite;
+        } else if (room instanceof PenthouseRoom) {
+            return penthouse;
+        } else {
+            return false;
+        }
+        /* 
+        if (room instanceof StandardRoom) {
             if (standard) return true;
             else return false;
         } else if (room instanceof EnsuiteRoom) {
@@ -48,7 +58,7 @@ public class Hotel {
             else return false;
         } else {
             return false;
-        }
+        }*/
     }
 
     /**
