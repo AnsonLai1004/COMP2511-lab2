@@ -4,16 +4,16 @@ import java.time.LocalDate;
 
 import org.json.JSONObject;
 
-public interface Room {
+public abstract class Room {
     
     /**
      * Checks if the room is not booked out during the given time.
-     * If so, creates a booking for the room at that time.
+     * If so, creates a +booking for the room at that time.
      * @param arrival
      * @param departure
      * @return The booking object if the booking succeeded, null if failed
      */
-    public Booking book(LocalDate arrival, LocalDate departure);
+    abstract Booking book(LocalDate arrival, LocalDate departure);
 
     /**
      * @return A JSON object of the form:
@@ -22,11 +22,11 @@ public interface Room {
      *  "type": the type of the room (standard, ensuite, penthouse)
      * }
      */
-    public JSONObject toJSON();
+    abstract JSONObject toJSON();
 
     /**
      * Prints a welcome message to the guest staying in the room.
      */
-    public void printWelcomeMessage();
+    abstract void printWelcomeMessage();
 
 }

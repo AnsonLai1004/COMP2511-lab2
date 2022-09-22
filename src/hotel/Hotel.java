@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Hotel {
@@ -66,7 +67,14 @@ public class Hotel {
      * { "name": name, "rooms": [ each room as a JSON object, in order of creation ]}
      */
     public JSONObject toJSON() {
-        return null;
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        JSONArray roomArr = new JSONArray();
+        for (Room room : rooms) {
+            roomArr.put(room.toJSON());
+        }
+        json.put("rooms", roomArr);
+        return json;
     }
 
     public String getName() {

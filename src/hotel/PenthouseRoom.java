@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class PenthouseRoom implements Room {
+public class PenthouseRoom extends Room {
 
     private List<Booking> bookings = new ArrayList<Booking>();
 
-    @Override
     public Booking book(LocalDate arrival, LocalDate departure) {
         for (Booking booking : bookings) {
             if (booking.overlaps(arrival, departure)) {
@@ -23,13 +23,17 @@ public class PenthouseRoom implements Room {
         return booking;
     }
 
-    @Override
     public JSONObject toJSON() {
-        // TODO Auto-generated method stub
-        return null;
+        JSONArray bookingsArr = new JSONArray();
+        for (Booking booking : bookings) {
+            bookingsArr.put(booking.toJSON());
+        }
+        JSONObject json = new JSONObject();
+        json.put("type", "penthouse");
+        json.put("bookings", bookingsArr);
+        return json;
     }
 
-    @Override
     public void printWelcomeMessage() {
         System.out.println("Welcome to your penthouse apartment, complete with ensuite, lounge, kitchen and master bedroom.");
     }

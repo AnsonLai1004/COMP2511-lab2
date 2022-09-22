@@ -87,6 +87,8 @@ public class BookingSystemTest {
 
             // Make a second booking at the same time/date
             boolean success = controller.makeBooking(hotelName, LocalDate.of(2020, 4, 21), LocalDate.of(2020, 5, 6), true, false, false); 
+            System.out.println(success);
+            
             assertFalse(success);
         }
 
@@ -103,6 +105,8 @@ public class BookingSystemTest {
             // Make a second booking 
             // Starts earlier but finishes after the start
             boolean success = controller.makeBooking(hotelName, LocalDate.of(2020, 3, 1), LocalDate.of(2020, 4, 30), true, false, false); 
+            System.out.println(success);
+            
             assertFalse(success);
         }
 
@@ -119,6 +123,7 @@ public class BookingSystemTest {
             // Make a second booking 
             // Starts before the first finishes, but finishes later
             boolean success = controller.makeBooking(hotelName, LocalDate.of(2020, 5, 1), LocalDate.of(2020, 5, 30), true, false, false); 
+            System.out.println(success);
             assertFalse(success);
         }
     }
@@ -135,7 +140,6 @@ public class BookingSystemTest {
             expected.put("name", hotelName);
     
             JSONObject hotelJSON = controller.hotelJSON(hotelName);
-            
             JSONAssert.assertEquals(expected, hotelJSON, true);
         }
     
@@ -154,6 +158,7 @@ public class BookingSystemTest {
             expectedHotel.put("name", hotelName);
     
             JSONObject hotelJSON = controller.hotelJSON(hotelName);
+
     
             JSONAssert.assertEquals(expectedHotel, hotelJSON, true);
         }
@@ -178,9 +183,13 @@ public class BookingSystemTest {
             JSONObject expectedHotel = new JSONObject();
             expectedHotel.put("rooms", new JSONArray(new JSONObject[]{expectedRoom}));
             expectedHotel.put("name", hotelName);
-    
+            
             JSONObject hotelJSON = controller.hotelJSON(hotelName);
-    
+            System.out.println("=============expect================");
+            System.out.println(expectedHotel);
+            System.out.println("=============result================");
+            System.out.println(hotelJSON);
+            
             JSONAssert.assertEquals(expectedHotel, hotelJSON, true);
         }
     }

@@ -19,19 +19,19 @@ public class Booking {
      */
     public JSONObject toJSON() {
         JSONObject booking = new JSONObject();
-        booking.put("arrival", arrival);
-        booking.put("departure", departure);
+        booking.put("arrival", arrival.toString());
+        booking.put("departure", departure.toString());
 
         return booking;
     }
 
     /**
+     * https://stackoverflow.com/questions/56732882/how-to-check-if-one-date-period-overlapping-another-date-period
      * Checks whether two dates overlap
      * @param start
      * @param end
      */
     public boolean overlaps(LocalDate start, LocalDate end) {
-        return false;
+        return start.isBefore(departure) && end.isAfter(arrival);
     }
-
 }
