@@ -1,36 +1,23 @@
 package hotel;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+// import java.util.ArrayList;
+// import java.util.List;
 
-import org.json.JSONArray;
+// import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class PenthouseRoom extends Room {
 
-    private List<Booking> bookings = new ArrayList<Booking>();
+    // private List<Booking> bookings = new ArrayList<Booking>();
 
     public Booking book(LocalDate arrival, LocalDate departure) {
-        for (Booking booking : bookings) {
-            if (booking.overlaps(arrival, departure)) {
-                return null;
-            }
-        }
-
-        Booking booking = new Booking(arrival, departure);
-        bookings.add(booking);
-        return booking;
+        return super.book(arrival, departure);
     }
 
     public JSONObject toJSON() {
-        JSONArray bookingsArr = new JSONArray();
-        for (Booking booking : bookings) {
-            bookingsArr.put(booking.toJSON());
-        }
-        JSONObject json = new JSONObject();
+        JSONObject json = super.toJSON();
         json.put("type", "penthouse");
-        json.put("bookings", bookingsArr);
         return json;
     }
 
