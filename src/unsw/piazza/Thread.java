@@ -7,7 +7,8 @@ import java.util.List;
  * A thread in the Piazza forum.
  */
 public class Thread {
-
+    private String title;
+    
     /**
      * Creates a new thread with a title and an initial first post.
      * The author of the first post at the time of thread creation is the owner of the thread.
